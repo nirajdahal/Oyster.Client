@@ -1,0 +1,38 @@
+<div class="da-operations">
+  <d-search class="da-header-search" [iconPosition]="'left'" [noBorder]="true" (searchFn)="onSearch($event)"></d-search>
+  <a href="https://devui.design/admin-page/docs" target="_blank">
+    <i class="icon icon-helping"></i>
+  </a>
+  <d-badge [count]="5">
+    <i class="icon icon-notice"></i>
+  </d-badge>
+  <div class="da-operations-user" dDropDown [trigger]="'hover'" appendToBody dDropDownToggle>
+    <d-avatar [name]="userName" [width]="22" [height]="22"></d-avatar>
+    <span class="da-user-name">{{userName }}</span>
+    <ul dDropDownMenu class="devui-dropdown-menu devui-scrollbar" role="menu" style="min-width: 120px">
+      <ng-container *ngIf="haveLoggedIn; else login">
+        <li role="menuitem">
+          <a class="devui-dropdown-item" [routerLink]="['/pages', 'user', 'center']"><i class="icon icon-mine"></i>User
+            Center</a>
+        </li>
+        <li role="menuitem">
+          <a class="devui-dropdown-item" [routerLink]="['/pages', 'user', 'settings']"><i
+              class="icon icon-setting"></i>Settings</a>
+        </li>
+        <li role="menuitem" (click)="handleUserOps('logout')">
+          <a class="devui-dropdown-item logout"><i class="icon icon-exit"></i>Logout</a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+
+</div>
+
+<ng-template #login>
+  <li role="menuitem">
+    <a class="devui-dropdown-item"><i class="icon icon-assign"></i>Login</a>
+  </li>
+  <li role="menuitem">
+    <a class="devui-dropdown-item"><i class="icon icon-add-member"></i>Register</a>
+  </li>
+</ng-template>

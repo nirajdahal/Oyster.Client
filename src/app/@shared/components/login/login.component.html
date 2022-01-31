@@ -1,0 +1,66 @@
+<div class="da-login">
+  <d-toast [value]="toastMessage"></d-toast>
+  <div class="da-login-form">
+    <div class="da-login-logo-wrapper">
+      <div class="da-login-logo">
+        <span class="da-logo-devui">
+          <img src="../../../../../assets/devui-logo.svg" alt="DevUI-Logo" />
+        </span>
+        <span class="da-text">Oyster</span>
+      </div>
+      <span class="da-coperation">
+
+      </span>
+    </div>
+    <div class="da-login-ways">
+
+
+
+      <ng-container>
+        <ng-template [ngTemplateOutlet]="loginWithPassword"></ng-template>
+      </ng-container>
+    </div>
+
+  </div>
+
+
+
+
+</div>
+
+<ng-template #loginWithPassword>
+  <form dForm [layout]="horizontalLayout" [labelSize]="'sm'" ngForm (dSubmit)="login()">
+    <d-form-item>
+      <d-form-label>Username：</d-form-label>
+      <d-form-control>
+        <div>
+          <input dTextInput autocomplete="off" name="userName" [(ngModel)]="loginFormData.username" />
+        </div>
+      </d-form-control>
+    </d-form-item>
+    <d-form-item>
+      <d-form-label>Password：</d-form-label>
+      <d-form-control [suffixTemplate]="suffixTemplate">
+        <input dTextInput name="password" [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="loginFormData.password" (keyup)="onKeyUp($event)" />
+      </d-form-control>
+    </d-form-item>
+    <div class="da-login-options">
+      <div class="da-auto-login">
+        <d-toggle [checked]="true"></d-toggle>
+        <span class="da-auto-login-text" style="margin-left: 8px">
+          Remember me
+        </span>
+      </div>
+      <span><a href="#">Forgot Password?</a></span>
+    </div>
+    <button class="da-submit-button" dFormSubmit>
+      Submit
+    </button>
+  </form>
+</ng-template>
+
+<ng-template #suffixTemplate>
+  <i [class]="showPassword ? 'icon icon-preview' : 'icon icon-preview-forbidden'"
+    (click)="showPassword = !showPassword"></i>
+</ng-template>
